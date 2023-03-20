@@ -1,0 +1,63 @@
+.movie {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
+    background-color: #3f497f;
+  }
+
+  &__search-box {
+    margin: 3em auto;
+  }
+
+  &__search-bar {
+    font-family: "Bangers", cursive;
+    letter-spacing: 0.1rem;
+    color: white;
+    padding: 0.5em 1.3em;
+    font-size: 1.4rem;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.1);
+    &::placeholder {
+      color: #f7c04a;
+    }
+  }
+
+  &__info-box {
+    margin: 0 2em 2em 2em;
+  }
+
+  &__desc {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2em;
+
+    &__data {
+      font-family: "Monoton", cursive;
+      letter-spacing: 0.1rem;
+      font-size: 2rem;
+      color: #f7c04a;
+      line-height: 1.6;
+
+      span {
+        font-family: "Bangers", cursive;
+        letter-spacing: 0.2rem;
+        font-size: 1.6rem;
+        color: #f8f5e4;
+      }
+    }
+
+    &__poster {
+      border: 2px solid rgb(227, 216, 216);
+      box-shadow: 8px 8px 2px 3px rgba(0, 0, 0, 0.6);
+      background-color: black;
+    }
+  }
+}
