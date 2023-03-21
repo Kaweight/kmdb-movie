@@ -1,21 +1,28 @@
 import React, { useState } from "react";
-import "./Movie.scss";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import "./Movie.scss";
 
 const Movie = () => {
-  const [data, setData] = useState({});
   const [movie, setMovie] = useState("");
 
   const URL = `http://www.omdbapi.com/?t=${movie}&apikey=e93993e6`;
 
-  const searchMovie = (e) => {
-    if (e.key === "Enter") {
-      axios.get(URL).then((response) => {
-        setData(response.data);
-      });
-      setMovie("");
+  const { data, isLoading, isError, refetch } = useQuery(
+    ["movie"],
+    async () => {
+      const response = await axios.get(URL);
+      return response.data;
     }
-  };
+  );
+
+  if (isError) {
+    return <h1>Sorry, there was an error</h1>;
+  }
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <div className="movie__container">
@@ -24,10 +31,12 @@ const Movie = () => {
           className="movie__search-bar"
           value={movie}
           onChange={(e) => setMovie(e.target.value)}
-          onKeyDown={searchMovie}
           placeholder="Enter movie title"
           type="text"
         />
+        <button className="movie__search-btn" onClick={refetch}>
+          Show movie
+        </button>
       </div>
       <div className="movie__info-box">
         <div className="movie__desc">
@@ -57,7 +66,6 @@ const Movie = () => {
               </p>
             </div>
           ) : null}
-          {/* {showPoster()} */}
           {data.Poster && data.Poster !== "N/A" ? (
             <div className="movie__desc__poster">
               <img src={data.Poster} alt={data.Title} />

@@ -23,7 +23,6 @@ module.exports = {
     port: 3000,
   },
   module: {
-    // exclude node_modules
     rules: [
       {
         test: /\.css$/i,
@@ -80,7 +79,6 @@ module.exports = {
       },
     ],
   },
-  // pass all js files through Babel
   resolve: {
     extensions: ["*", ".js", ".jsx"],
   },
